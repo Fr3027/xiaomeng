@@ -1,11 +1,13 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-
+import Login from "./views/Login.vue";
+import FleaMarket from "./views/FleaMarket.vue";
+import LostAndFound from "./views/LostAndFound.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  mode: process.env.CORDOVA_PLATFORM ? "hash" : "history",
   base: process.env.BASE_URL,
   routes: [
     {
@@ -21,6 +23,21 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/flea",
+      name: "flea",
+      component: FleaMarket
+    },
+    {
+      path: "/LostAndFound",
+      name: "LostAndFound",
+      component: LostAndFound
     }
   ]
 });
